@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router'
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const UserLayout = () => {
   return (
@@ -7,12 +8,23 @@ const UserLayout = () => {
       <div className='navbar'>
         <div className='container'>
           <div className='nav-content'>
-            Username
+            <div className='icon'>
+              <FaRegCircleUser />
+            </div>
+
+            <div>
+              <div className='username'>
+                JASON LEE L.W
+              </div>
+              <div className='title'>
+                Sales Lead
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className='content container'>
+      <div className='container'>
         <Outlet/>
       </div>
     </div>

@@ -5,11 +5,13 @@ import Registrasi from "../pages/Auth/Registrasi";
 import UserLayout from "../layouts/UserLayout";
 import Transaction from "../pages/Dashboard/Transaction";
 import Profile from "../pages/Dashboard/Profile";
+import NotFound from "../pages/Errors/NotFound";
 
 const router = createBrowserRouter([
   {
     path : '/',
     element : <AuthLayout/>,
+    
     children : [
       {
         index : true,
@@ -38,6 +40,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '*',
+    element: <NotFound/>
+  }
 ])
 
 export default router;

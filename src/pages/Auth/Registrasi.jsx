@@ -6,7 +6,7 @@ import Button from '../../components/Button';
 import { FiLock } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
 import axiosClient from '../../api/axios-client';
-import { Alert } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 
 const Registrasi = () => {
@@ -14,9 +14,12 @@ const Registrasi = () => {
   const [isValidate, setIsValidate] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegistrasi = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true)
 
     const {name, email, password} = e.target.elements;
 
@@ -34,6 +37,7 @@ const Registrasi = () => {
       .catch((error) => {
         setIsValidate(true)
         setErrorMessage(error.response.data.error)
+        setIsLoading(false)
       })
   }
 
@@ -81,7 +85,7 @@ const Registrasi = () => {
 
         <Button 
           type='submit' 
-          text='Registrasi'
+          text={isLoading == true ? <CircularProgress size={'14px'} sx={{marginTop: 0.1}} color="inherit"/> : 'Registrasi'}
         />
       </form>
 

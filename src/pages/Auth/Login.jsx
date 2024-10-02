@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import InputField from '../../components/InputField'
 import { MdOutlineEmail } from "react-icons/md";
 import axiosClient from '../../api/axios-client';
-import { Alert } from '@mui/material';
+import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 import { FiLock } from "react-icons/fi";
 
@@ -13,9 +13,12 @@ const Login = () => {
   const [isValidate, setIsValidate] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    setIsLoading(true)
 
     const {email, password} = e.target.elements;
 
@@ -34,6 +37,7 @@ const Login = () => {
       .catch((error) => {
         setIsValidate(true)
         setErrorMessage(error.response.data.error)
+        setIsLoading(false)
       })
   }
 
@@ -73,7 +77,7 @@ const Login = () => {
 
         <Button 
           type='submit' 
-          text='Login'
+          text={isLoading == true ? <CircularProgress size={'14px'} sx={{marginTop: 0.1}} color="inherit"/> : 'Login'}
         />
       </form>
 

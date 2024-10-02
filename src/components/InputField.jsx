@@ -4,11 +4,18 @@ const InputField = ({
   name,
   icon,
   placeholder,
-  type
+  type,
+  invalid,
 }) => {
   return (
     <div className='input-icons'>
-      <input type={type} name={name} placeholder={placeholder} />
+      <input 
+        className={invalid && 'invalid'} 
+        type={type} 
+        name={name} 
+        placeholder={placeholder}
+        autoComplete={type == 'password' ? 'on' : 'off'}
+      />
       <div className='icon'>
         {icon}
       </div>

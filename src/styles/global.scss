@@ -1,7 +1,7 @@
 $primary: #0575E6;
 $accent-primary : #0266c9;
 $light:#F2F2F2;
-
+$danger: #D74141;
 
 $radius: 30px;
 
@@ -37,16 +37,30 @@ $radius: 30px;
     }
 }
 
+// link
+.link{
+    text-decoration: none;
+    color: $primary;
+
+    &:hover{
+        color: $accent-primary;
+    }
+}
+
+// Input Field
 .input-icons{
     width: 100%;
     position: relative;
 
     .icon{
+        position: a;
         padding: 10px 20px;
         color: lightgray;
     }
 
     input{
+        width: 100%;
+        box-sizing: border-box;
         background: transparent;
         position: absolute;
         padding: 10px 46px;
@@ -66,6 +80,14 @@ $radius: 30px;
         &:active + .icon,
         &:focus + .icon{
             color: $primary;
+        }
+
+        &.invalid{
+            outline: 1px solid $danger;
+        }
+
+        &.invalid + .icon{
+            color: $danger;
         }
     }
 }
@@ -151,7 +173,12 @@ $radius: 30px;
                 position: relative;
                 display: flex;
                 flex-direction: column;
-                gap: 12px;
+                gap: 14px;
+            }
+
+            .alert{
+                margin-top: 10px;
+                margin-top: 10px;
             }
         }
     }

@@ -1,8 +1,15 @@
 import React from 'react'
-import { Outlet } from 'react-router'
+import { Navigate, Outlet } from 'react-router'
 import Button from '../components/Button'
+import { useAuth } from '../context/AuthContext'
 
 const AuthLayout = () => {
+  const {user} = useAuth()
+
+  if (user) {
+    return <Navigate to='/dashboard'/>
+  }
+
   return (
     <div className='auth-layout'>
       {/* Left Content */}

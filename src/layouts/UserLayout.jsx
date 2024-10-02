@@ -1,8 +1,15 @@
 import React from 'react'
-import { Outlet } from 'react-router'
+import { Navigate, Outlet } from 'react-router'
 import { FaRegCircleUser } from "react-icons/fa6";
+import { useAuth } from '../context/AuthContext';
 
 const UserLayout = () => {
+  const {user} = useAuth();
+
+  if(!user) {
+    return <Navigate to='/login'/>
+  }
+
   return (
     <div className='user-layout'>
       <div className='navbar'>

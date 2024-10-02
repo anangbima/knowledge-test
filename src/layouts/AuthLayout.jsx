@@ -4,7 +4,7 @@ import Button from '../components/Button'
 
 const AuthLayout = () => {
   return (
-    <div className='auth'>
+    <div className='auth-layout'>
       {/* Left Content */}
       <div className='left'>
         <div className='content'>
@@ -15,7 +15,11 @@ const AuthLayout = () => {
             Lorem ipsum dolor sit amet.
           </div>
           
-          <Button text={'Read Me'}/>
+          <Button 
+            type='link' 
+            to='/registrasi' 
+            text='Read Me'
+          />
         </div>
 
         <div className='eclipse e-1'></div>

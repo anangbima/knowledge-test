@@ -3,9 +3,18 @@ import { Outlet } from 'react-router'
 
 const UserLayout = () => {
   return (
-    <div>
-      
-      <Outlet/>
+    <div className='user-layout'>
+      <div className='navbar'>
+        <div className='container'>
+          <div className='nav-content'>
+            Username
+          </div>
+        </div>
+      </div>
+
+      <div className='content container'>
+        <Outlet/>
+      </div>
     </div>
   )
 }

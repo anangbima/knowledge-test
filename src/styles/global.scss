@@ -1,4 +1,9 @@
 $primary: #0575E6;
+$accent-primary : #0266c9;
+$light:#F2F2F2;
+
+
+$radius: 30px;
 
 * {
     font-family: "Poppins", system-ui;
@@ -10,18 +15,64 @@ $primary: #0575E6;
 // Buttons
 .btn{
     background: $primary;
-    border-radius: 30px;
+    border-radius: $radius;
     color: white;
+    text-align: center;
+    border: 0px;
+    cursor: pointer;
+    text-decoration: none;
     padding: 8px 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    
+    &:hover{
+        background: $accent-primary;
+    }
+}
+
+.input-icons{
+    width: 100%;
+    position: relative;
+
+    .icon{
+        padding: 10px 20px;
+        color: lightgray;
+    }
+
+    input{
+        background: transparent;
+        position: absolute;
+        padding: 10px 46px;
+        border: 1px solid #EEEEEE;
+        border-radius: $radius;
+        -webkit-border-radius: $radius;
+        -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+        -o-border-radius: $radius;
+
+        &:active, 
+        &:focus{
+            outline: 1px solid $primary;
+            background: transparent!important;
+        }
+
+        &:active + .icon,
+        &:focus + .icon{
+            color: $primary;
+        }
+    }
 }
 
 
 // Auth Style
-.auth{
+.auth-layout{
     width: 100%;
     height: 100vh;
     position: relative;
@@ -92,7 +143,47 @@ $primary: #0575E6;
                 font-weight: 700;
                 line-height: 39px;
             }
+
+            .form-auth{
+                width: 100%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
         }
+    }
+}
+
+// User layout style
+.user-layout{
+    width: 100%;
+    min-height: 100vh;
+    background: $light;
+
+    .container{
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    .navbar{
+        width: 100%;
+        height: 64px;
+        background: $primary;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        color: white;
+
+        .nav-content{
+            display: flex;
+        }
+    }
+
+    .content{
+        margin-top: 40px;
     }
 }
 

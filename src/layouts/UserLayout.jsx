@@ -18,6 +18,7 @@ const UserLayout = () => {
     setAnchorEl(null);
   };
 
+  // handle logout
   const handleLogout = () => {
     setAnchorEl(null);
     localStorage.removeItem('user');
@@ -25,16 +26,19 @@ const UserLayout = () => {
     navigate('/')
   };
 
+  // handle klik profile
   const handleProfile = () => {
     setAnchorEl(null);
     navigate('/profile')
   }
 
+  // 
   if(!user) {
     return <Navigate to='/login'/>
   }
 
   return (
+    // layout untuk halaman user
     <div className='user-layout'>
       <div className='navbar'>
         <div className='container'>

@@ -22,6 +22,7 @@ const Registrasi = () => {
     document.title = 'Registrasi - GoFinance'
   }, [])
 
+  // handle Registrasi
   const handleRegistrasi = async (e) => {
     e.preventDefault();
 
@@ -29,12 +30,13 @@ const Registrasi = () => {
 
     const {name, email, password} = e.target.elements;
 
-    // validate data
+    // validate name
     if(name.value === '' || name.value === null) {
       setNameError('Name is required')
       return;
     }
     
+    // validasi email
     if(email.value === '' || email.value === null) {
       setEmailError('Email is required')
       return;
@@ -43,6 +45,7 @@ const Registrasi = () => {
       return;
     }
 
+    // validasi password
     if(password.value === '' || password.value === null) {
       setPasswordError('Password is required')
       return;
@@ -59,6 +62,7 @@ const Registrasi = () => {
       password : password.value
     }
 
+    // proses menyimpan data ke dalam fake API
     axiosClient.post('users', payload)
       .then(({data}) => {
         navigate('/dashboard')

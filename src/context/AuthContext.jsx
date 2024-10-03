@@ -5,6 +5,7 @@ const AuthContent = createContext({
   setUser : () => {}
 });
 
+// Provider untuk autentikasi
 export const AuthProvider = ({children}) => {
   const [user, _setUser] = useState(
     JSON.parse(localStorage.getItem('user')) || null

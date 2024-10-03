@@ -10,7 +10,6 @@ const TransactionForm = ({
   statusError,
 }) => {
   
-
   return (
     <div className='form-wrap'>
       <InputField

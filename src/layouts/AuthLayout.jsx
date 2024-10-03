@@ -11,6 +11,7 @@ const AuthLayout = () => {
   }
 
   return (
+    // layout untuk halaman authentikasi
     <div className='auth-layout'>
       {/* Left Content */}
       <div className='left'>

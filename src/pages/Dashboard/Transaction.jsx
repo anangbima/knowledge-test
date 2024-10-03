@@ -34,6 +34,7 @@ const Transaction = () => {
     emptyInput();
   }
 
+  // handle Edit dialog
   const handleEditDialog = (id) => {
     if (editDialog === true) {
       setEditDialog(false)
@@ -43,6 +44,7 @@ const Transaction = () => {
     }
   }
 
+  // handle Delete dialog
   const handleDeleteDialog = (id) => {
     if (deleteDialog === true) {
       setDeleteDialog(false)
@@ -52,6 +54,7 @@ const Transaction = () => {
     }
   }
 
+  // get data transaction dari fake API
   const getTransaction = () => {
     axiosClient.get('transaction')
       .then(({data}) => {
@@ -63,6 +66,7 @@ const Transaction = () => {
       })
   }
 
+  // get data transaction by id dari fake API
   const getDetailTransaction = (id, _for) => {
     axiosClient.get('transaction/'+id)
       .then(({data}) => {
@@ -204,22 +208,25 @@ const Transaction = () => {
             const formData = new FormData(e.currentTarget);
             const formJson = Object.fromEntries(formData.entries())
 
-            // validate data
+            // validate item
             if(formJson.item === '' || formJson.item === null) {
               setItemError('Item is required')
               return;
             }
 
+            // validasi price
             if(formJson.price === '' || formJson.price === null) {
               setPriceError('Price is required')
               return;
             }
 
+            // validasi date
             if(formJson.date === '' || formJson.date === null) {
               setDateError('Date is required')
               return;
             }
 
+            // validasi status
             if(formJson.status === '' || formJson.status === null) {
               setStatusError('Status is required')
               return;
@@ -248,6 +255,7 @@ const Transaction = () => {
 
           <Box sx={{ mt: 3 }}/>
 
+          {/* Form Tambah */}
           <TransactionForm
             // isValidate={isValidate}
             itemError={itemError}
@@ -323,6 +331,7 @@ const Transaction = () => {
 
           <Box sx={{ mt: 3 }}/>
 
+          {/* Form Edit */}
           <TransactionForm
             itemError={itemError}
             priceError={priceError}
@@ -379,6 +388,7 @@ const Transaction = () => {
       </Dialog>
 
       <div className={'content'}>
+        {/* Menampilkan data transaction dalam bentuk table */}
         <DataGrid
           rows={transaction}
           columns={columns}

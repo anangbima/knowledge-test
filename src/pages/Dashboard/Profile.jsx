@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext'
 import { FaRegCircleUser } from "react-icons/fa6";
 
 const Profile = () => {
-  const {user} = useAuth();
+  const {user} = useAuth(); //mengambil dari localstorage
 
   useEffect(() => {
     document.title = 'Profile - GoFinance'

@@ -22,6 +22,7 @@ const Login = () => {
     document.title = 'Login - GoFinance'
   }, [])
 
+  // handle login
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -29,6 +30,7 @@ const Login = () => {
 
     const {email, password} = e.target.elements;
 
+    // validasi email
     if(email.value === '' || email.value === null) {
       setEmailError('Email is required')
       return;
@@ -37,6 +39,7 @@ const Login = () => {
       return;
     }
 
+    // validasi password
     if(password.value === '' || password.value === null) {
       setPasswordError('Password is required')
       return;
@@ -47,11 +50,7 @@ const Login = () => {
 
     setIsLoading(true)
 
-    const payload = {
-      email: email.value,
-      password: password.value,
-    }
-
+    // proses menyimpan ke Fake API
     axiosClient.get('users')
       .then(({data}) => {
 

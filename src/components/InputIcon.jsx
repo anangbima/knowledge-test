@@ -19,6 +19,9 @@ const InputIcon = ({
       <div className='icon'>
         {icon}
       </div>
+      <div className={'validation-message ' + (invalid ? 'show' : 'hide')}>
+        * {invalid}
+      </div>
     </div>
   )
 }

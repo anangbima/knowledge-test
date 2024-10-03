@@ -45,7 +45,7 @@ const UserLayout = () => {
 
             <div>
               <div className='username'>
-                JASON LEE L.W
+                {user.name}
               </div>
               <div className='title'>
                 Sales Lead

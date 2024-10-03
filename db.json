@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "id": "5795",
+      "name": "Anang Bima Perdana",
+      "email": "anangbima11@gmail.com",
+      "password": "1Januari2001"
+    }
+  ],
   "transaction": [
     {
       "id": "1",

@@ -8,13 +8,16 @@ import { FaRegUser } from "react-icons/fa6";
 import axiosAuth from '../../api/axios-user';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
+import axiosUser from '../../api/axios-user';
 
 const Registrasi = () => {
   const {setUser} = useAuth();
-  const [isValidate, setIsValidate] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
+  const [nameError, setNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   useEffect(() => {
     document.title = 'Registrasi - GoFinance'
@@ -23,9 +26,33 @@ const Registrasi = () => {
   const handleRegistrasi = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true)
+    emptyInput()
 
     const {name, email, password} = e.target.elements;
+
+    // validate data
+    if(name.value === '' || name.value === null) {
+      setNameError('Name is required')
+      return;
+    }
+    
+    if(email.value === '' || email.value === null) {
+      setEmailError('Email is required')
+      return;
+    } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError('Email is not valid')
+      return;
+    }
+
+    if(password.value === '' || password.value === null) {
+      setPasswordError('Password is required')
+      return;
+    } else if (password.value.length < 6) {
+      setPasswordError('Password length at least 6 char')
+      return;
+    }
+
+    setIsLoading(true)
 
     const payload = {
       name : name.value,
@@ -33,16 +60,21 @@ const Registrasi = () => {
       password : password.value
     }
 
-    axiosAuth.post('/register', payload)
+    axiosUser.post('users', payload)
       .then(({data}) => {
-        setUser(data)
         navigate('/dashboard')
-      })
-      .catch((error) => {
-        setIsValidate(true)
-        setErrorMessage(error.response.data.error)
+        setUser(data);
         setIsLoading(false)
       })
+      .catch((error) => {
+        setIsLoading(false)
+      })
+  }
+
+  const emptyInput = () => {
+    setNameError('')
+    setEmailError('')
+    setPasswordError('')
   }
 
   return (
@@ -54,21 +86,13 @@ const Registrasi = () => {
         Sign up to get started
       </div>
 
-      {isValidate &&
-        <div className='alert'>
-          <Alert sx={{borderRadius: '30px',}} severity="error">
-            {errorMessage}
-          </Alert>
-        </div>
-      }
-
       <form onSubmit={handleRegistrasi} className='form-auth'>
         <InputIcon
           name='name'
           type='text'
           placeholder='Full Name'
           icon={<FaRegUser />}
-          invalid={isValidate}
+          invalid={nameError}
         />
 
         <InputIcon
@@ -76,7 +100,7 @@ const Registrasi = () => {
           type='email'
           placeholder='Email Address'
           icon={<MdOutlineEmail />}
-          invalid={isValidate}
+          invalid={emailError}
         />
 
         <InputIcon
@@ -84,7 +108,7 @@ const Registrasi = () => {
           type='password'
           placeholder='Password'
           icon={<FiLock/>}
-          invalid={isValidate}
+          invalid={passwordError}
         />
 
         <Button 

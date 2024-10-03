@@ -116,6 +116,21 @@ $radius: 30px;
             color: $danger;
         }
     }
+
+    .validation-message{
+        padding-left: 20px;
+        padding-top: 5px;
+        font-size: 14px;
+        color: $danger;
+
+        &.show{
+            display: flex;
+        }
+
+        &.hide{
+            display: none;
+        }
+    }
 }
 
 // Input Field
@@ -327,6 +342,39 @@ $radius: 30px;
         margin-top: 30px;
         border: 1px solid #00000012;
         background-color: white;
+    }
+
+    .profile{
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        min-height: 300px;
+        gap: 40px;
+
+        .image-wrap{
+            width: 10%;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+
+            .image{
+                font-size: 60px;
+                color: $primary;
+            }
+        }
+
+        .bio{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .label{
+                font-size: 14px;
+                color: $primary;
+            }
+        }
     }
 }
 

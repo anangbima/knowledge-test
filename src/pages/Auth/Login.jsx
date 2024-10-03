@@ -7,6 +7,7 @@ import axiosAuth from '../../api/axios-auth';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 import { FiLock } from "react-icons/fi";
+import axiosUser from '../../api/axios-user';
 
 const Login = () => {
   const {setUser} = useAuth();
@@ -15,6 +16,9 @@ const Login = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
   useEffect(() => {
     document.title = 'Login - GoFinance'
   }, [])
@@ -22,27 +26,61 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true)
+    emptyInput()
 
     const {email, password} = e.target.elements;
+
+    if(email.value === '' || email.value === null) {
+      setEmailError('Email is required')
+      return;
+    } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+      setEmailError('Email is not valid')
+      return;
+    }
+
+    if(password.value === '' || password.value === null) {
+      setPasswordError('Password is required')
+      return;
+    } else if (password.value.length < 6) {
+      setPasswordError('Password length at least 6 char')
+      return;
+    }
+
+    setIsLoading(true)
 
     const payload = {
       email: email.value,
       password: password.value,
     }
 
-    axiosAuth.post('/login', payload)
+    axiosUser.get('users')
       .then(({data}) => {
-        setUser(data)
-        console.log(data.token);
-        // localStorage.setItem('tokem', data.token);
-        navigate('/dashboard')
+        data.map(user => {
+          if (email.value === user.email) {
+            if (password.value === user.password) {
+              navigate('/dashboard')
+              setIsLoading(false)
+              setUser(user)
+            }else{
+              setIsValidate(true)
+              setErrorMessage('Password Incorrect')
+              setIsLoading(false)
+            }
+          }else{
+            setIsValidate(true)
+            setErrorMessage('User Not Found')
+            setIsLoading(false)
+          }
+        })
       })
       .catch((error) => {
-        setIsValidate(true)
-        setErrorMessage(error.response.data.error)
         setIsLoading(false)
       })
+  }
+
+  const emptyInput = () => {
+    setEmailError('')
+    setPasswordError('')
   }
 
   return (
@@ -68,7 +106,7 @@ const Login = () => {
           type='email'
           placeholder='Email Address'
           icon={<MdOutlineEmail />}
-          invalid={isValidate}
+          invalid={emailError}
         />
 
         <InputIcon
@@ -76,7 +114,7 @@ const Login = () => {
           type='password'
           placeholder='Password'
           icon={<FiLock />}
-          invalid={isValidate}
+          invalid={passwordError}
         />
 
         <Button 

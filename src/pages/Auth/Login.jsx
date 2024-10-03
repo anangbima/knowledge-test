@@ -3,11 +3,10 @@ import Button from '../../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import InputIcon from '../../components/InputIcon'
 import { MdOutlineEmail } from "react-icons/md";
-import axiosAuth from '../../api/axios-auth';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 import { FiLock } from "react-icons/fi";
-import axiosUser from '../../api/axios-user';
+import axiosClient from '../../api/axios-client';
 
 const Login = () => {
   const {setUser} = useAuth();
@@ -53,25 +52,33 @@ const Login = () => {
       password: password.value,
     }
 
-    axiosUser.get('users')
+    axiosClient.get('users')
       .then(({data}) => {
-        data.map(user => {
-          if (email.value === user.email) {
-            if (password.value === user.password) {
-              navigate('/dashboard')
-              setIsLoading(false)
-              setUser(user)
+
+        if (data.length != 0) {
+          data.map(user => {
+            if (email.value === user.email) {
+              if (password.value === user.password) {
+                navigate('/dashboard')
+                setIsLoading(false)
+                setUser(user)
+              }else{
+                setIsValidate(true)
+                setErrorMessage('Password Incorrect')
+                setIsLoading(false)
+              }
             }else{
               setIsValidate(true)
-              setErrorMessage('Password Incorrect')
+              setErrorMessage('User Not Found')
               setIsLoading(false)
             }
-          }else{
-            setIsValidate(true)
-            setErrorMessage('User Not Found')
-            setIsLoading(false)
-          }
-        })
+          })
+        }else{
+          setIsValidate(true)
+          setErrorMessage('User Not Found')
+          setIsLoading(false)
+        }
+        
       })
       .catch((error) => {
         setIsLoading(false)

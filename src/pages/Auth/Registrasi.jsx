@@ -5,10 +5,9 @@ import { MdOutlineEmail } from "react-icons/md";
 import Button from '../../components/Button';
 import { FiLock } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
-import axiosAuth from '../../api/axios-user';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
-import axiosUser from '../../api/axios-user';
+import axiosClient from '../../api/axios-client';
 
 const Registrasi = () => {
   const {setUser} = useAuth();
@@ -60,7 +59,7 @@ const Registrasi = () => {
       password : password.value
     }
 
-    axiosUser.post('users', payload)
+    axiosClient.post('users', payload)
       .then(({data}) => {
         navigate('/dashboard')
         setUser(data);

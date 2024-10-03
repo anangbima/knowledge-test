@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosUser = axios.create({
+const axiosClient = axios.create({
   baseURL: 'http://localhost:3000/',
   headers: {
     "Content-Type": "application/json",
@@ -9,7 +9,7 @@ const axiosUser = axios.create({
 });
 
 // mengecek apakah axios error
-axiosUser.interceptors.response.use(
+axiosClient.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -24,4 +24,4 @@ axiosUser.interceptors.response.use(
   }
 );
 
-export default axiosUser;
+export default axiosClient;

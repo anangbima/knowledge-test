@@ -3,14 +3,13 @@ import Header from '../../components/Header'
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
 import TransactionForm from '../../components/forms/TransactionForm';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import axiosUser from '../../api/axios-user';
+import axiosClient from '../../api/axios-client';
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 
 const Transaction = () => {
-  const [isValidate, setIsValidate] = useState(false);
   const [transaction, setTransaction] = useState([]);
   const [detailTransaction, setDetailTransaction] = useState([]);
 
@@ -54,7 +53,7 @@ const Transaction = () => {
   }
 
   const getTransaction = () => {
-    axiosUser.get('transaction')
+    axiosClient.get('transaction')
       .then(({data}) => {
         setTransaction(data)
       })
@@ -65,7 +64,7 @@ const Transaction = () => {
   }
 
   const getDetailTransaction = (id, _for) => {
-    axiosUser.get('transaction/'+id)
+    axiosClient.get('transaction/'+id)
       .then(({data}) => {
         setDetailTransaction(data)
 
@@ -234,7 +233,7 @@ const Transaction = () => {
             }
 
             // proses menambadata
-            axiosUser.post('transaction', payload)
+            axiosClient.post('transaction', payload)
               .then(({data}) => {
                 handleAddDialog()
                 getTransaction()
@@ -310,7 +309,7 @@ const Transaction = () => {
             }
 
             // proses mengubah data
-            axiosUser.put('transaction/'+detailTransaction.id, payload)
+            axiosClient.put('transaction/'+detailTransaction.id, payload)
               .then(({data}) => {
                 handleEditDialog()
                 getTransaction()
@@ -353,7 +352,7 @@ const Transaction = () => {
             e.preventDefault();
 
             // proses menghapus data
-            axiosUser.delete('transaction/'+detailTransaction.id)
+            axiosClient.delete('transaction/'+detailTransaction.id)
               .then(({data}) => {
                 handleDeleteDialog()
                 getTransaction()

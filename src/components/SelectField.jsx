@@ -11,10 +11,10 @@ const SelectField = ({
       <select 
         name={name} 
         id={name}
-        defaultValue={value ? value : ''}
+        defaultValue={value ? value : 'Waiting'}
         className= {invalid ? 'invalid' : ''}
+        required
       >
-        <option>Choose one</option>
         {option.map((o, index) => 
           <option key={index} value={o}>{o}</option>
         )}

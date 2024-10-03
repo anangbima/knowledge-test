@@ -18,6 +18,12 @@ const Transaction = () => {
 	const [editDialog, setEditDialog] = useState(false); //Manage modal edit
 	const [deleteDialog, setDeleteDialog] = useState(false); // Manage modal hapus
 
+  const [itemError, setItemError] = useState('');
+  const [priceError, setPriceError] = useState('');
+  const [dateError, setDateError] = useState('');
+  const [statusError, setStatusError] = useState('');
+  
+
   useEffect(() => {
     document.title = 'Transaction - GoFinance';
     getTransaction();
@@ -26,11 +32,13 @@ const Transaction = () => {
   // handle add dialog
   const handleAddDialog = () => {
     setAddDialog(!addDialog)
+    emptyInput();
   }
 
   const handleEditDialog = (id) => {
     if (editDialog === true) {
       setEditDialog(false)
+      emptyInput();
     }else{
       getDetailTransaction(id, 'forUpdate')
     }
@@ -39,6 +47,7 @@ const Transaction = () => {
   const handleDeleteDialog = (id) => {
     if (deleteDialog === true) {
       setDeleteDialog(false)
+      emptyInput();
     }else{
       getDetailTransaction(id, 'forDelete')
     }
@@ -165,6 +174,13 @@ const Transaction = () => {
     })
   }
 
+  const emptyInput = () => {
+    setItemError('')
+    setPriceError('')
+    setDateError('')
+    setStatusError('')
+  }
+
   return (
     <div>
       <Header page='Transaction'/>
@@ -189,6 +205,27 @@ const Transaction = () => {
             const formData = new FormData(e.currentTarget);
             const formJson = Object.fromEntries(formData.entries())
 
+            // validate data
+            if(formJson.item === '' || formJson.item === null) {
+              setItemError('Item is required')
+              return;
+            }
+
+            if(formJson.price === '' || formJson.price === null) {
+              setPriceError('Price is required')
+              return;
+            }
+
+            if(formJson.date === '' || formJson.date === null) {
+              setDateError('Date is required')
+              return;
+            }
+
+            if(formJson.status === '' || formJson.status === null) {
+              setStatusError('Status is required')
+              return;
+            }
+
             const payload = {
               item: formJson.item,
               price: formJson.price,
@@ -201,6 +238,7 @@ const Transaction = () => {
               .then(({data}) => {
                 handleAddDialog()
                 getTransaction()
+                emptyInput();
                 showSwal('Success Add Transaction')
               })
           }
@@ -212,7 +250,11 @@ const Transaction = () => {
           <Box sx={{ mt: 3 }}/>
 
           <TransactionForm
-            isValidate={isValidate}
+            // isValidate={isValidate}
+            itemError={itemError}
+            priceError={priceError}
+            dateError={dateError}
+            statusError={statusError}
           />
 
         </DialogContent>
@@ -239,6 +281,27 @@ const Transaction = () => {
             const formData = new FormData(e.currentTarget);
             const formJson = Object.fromEntries(formData.entries())
 
+             // validate data
+            if(formJson.item === '' || formJson.item === null) {
+              setItemError('Item is required')
+              return;
+            }
+
+            if(formJson.price === '' || formJson.price === null) {
+              setPriceError('Price is required')
+              return;
+            }
+
+            if(formJson.date === '' || formJson.date === null) {
+              setDateError('Date is required')
+              return;
+            }
+
+            if(formJson.status === '' || formJson.status === null) {
+              setStatusError('Status is required')
+              return;
+            }
+
             const payload = {
               item: formJson.item,
               price: formJson.price,
@@ -262,7 +325,10 @@ const Transaction = () => {
           <Box sx={{ mt: 3 }}/>
 
           <TransactionForm
-            isValidate={isValidate}
+            itemError={itemError}
+            priceError={priceError}
+            dateError={dateError}
+            statusError={statusError}
             value={detailTransaction}
           />
 

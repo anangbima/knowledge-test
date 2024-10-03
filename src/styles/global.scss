@@ -116,21 +116,6 @@ $radius: 30px;
             color: $danger;
         }
     }
-
-    .validation-message{
-        padding-left: 20px;
-        padding-top: 5px;
-        font-size: 14px;
-        color: $danger;
-
-        &.show{
-            display: flex;
-        }
-
-        &.hide{
-            display: none;
-        }
-    }
 }
 
 // Input Field
@@ -157,6 +142,21 @@ $radius: 30px;
         &.invalid{
             outline: 1px solid $danger;
         }
+    }
+}
+
+.validation-message{
+    padding-left: 20px;
+    padding-top: 5px;
+    font-size: 14px;
+    color: $danger;
+
+    &.show{
+        display: flex;
+    }
+
+    &.hide{
+        display: none;
     }
 }
 

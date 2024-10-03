@@ -16,6 +16,9 @@ const InputField = ({
         type={type}
         defaultValue={value ? value : ''}
       />
+      <div className={'validation-message ' + (invalid ? 'show' : 'hide')}>
+        * {invalid}
+      </div>
     </div>
   )
 }

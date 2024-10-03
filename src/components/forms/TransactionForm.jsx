@@ -3,8 +3,11 @@ import InputField from '../InputField'
 import SelectField from '../SelectField'
 
 const TransactionForm = ({
-  isValidate,
-  value
+  value,
+  itemError,
+  priceError,
+  dateError,
+  statusError,
 }) => {
   
 
@@ -14,7 +17,7 @@ const TransactionForm = ({
         name='item'
         type='text'
         placeholder='Item'
-        invalid={isValidate}
+        invalid={itemError}
         value={value ? value.item : ''}
       />
 
@@ -22,7 +25,7 @@ const TransactionForm = ({
         name='price'
         type='number'
         placeholder='Price'
-        invalid={isValidate}
+        invalid={priceError}
         value={value ? value.price : ''}
       />
 
@@ -30,13 +33,13 @@ const TransactionForm = ({
         name='date'
         type='date'
         placeholder='Date'
-        invalid={isValidate}
+        invalid={dateError}
         value={value ? value.date : ''}
       />
 
       <SelectField
         name='status'
-        invalid={isValidate}
+        invalid={statusError}
         value={value ? value.status : ''}
         option={['Waiting', 'Done', 'Cancel']}
       />

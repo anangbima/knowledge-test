@@ -3,7 +3,6 @@ import { Navigate, Outlet, useNavigate } from 'react-router'
 import { FaRegCircleUser } from "react-icons/fa6";
 import { useAuth } from '../context/AuthContext';
 import { Menu, MenuItem } from '@mui/material';
-import axiosClient from '../api/axios-client';
 
 const UserLayout = () => {
   const {user} = useAuth();

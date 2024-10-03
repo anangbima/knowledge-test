@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
-import InputField from '../../components/InputField'
+import InputIcon from '../../components/InputIcon'
 import { MdOutlineEmail } from "react-icons/md";
-import axiosClient from '../../api/axios-client';
+import axiosAuth from '../../api/axios-auth';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 import { FiLock } from "react-icons/fi";
@@ -31,7 +31,7 @@ const Login = () => {
       password: password.value,
     }
 
-    axiosClient.post('/login', payload)
+    axiosAuth.post('/login', payload)
       .then(({data}) => {
         setUser(data)
         console.log(data.token);
@@ -63,7 +63,7 @@ const Login = () => {
       }
 
       <form onSubmit={handleLogin} className='form-auth'>
-        <InputField
+        <InputIcon
           name='email'
           type='email'
           placeholder='Email Address'
@@ -71,7 +71,7 @@ const Login = () => {
           invalid={isValidate}
         />
 
-        <InputField
+        <InputIcon
           name='password'
           type='password'
           placeholder='Password'

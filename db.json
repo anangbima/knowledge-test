@@ -34,6 +34,13 @@
             "price" : 89.54,
             "date" : "31/12/2022",
             "status" : "lorem"
+        },
+        {
+            "id" : 6,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
         }
     ]
 }

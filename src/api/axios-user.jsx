@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const axiosClient = axios.create({
-  baseURL: 'https://reqres.in/api',
+const axiosUser = axios.create({
+  baseURL: 'http://localhost:3000/',
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
@@ -9,7 +9,7 @@ const axiosClient = axios.create({
 });
 
 // mengecek apakah axios error
-axiosClient.interceptors.response.use(
+axiosUser.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -24,4 +24,4 @@ axiosClient.interceptors.response.use(
   }
 );
 
-export default axiosClient;
+export default axiosUser;

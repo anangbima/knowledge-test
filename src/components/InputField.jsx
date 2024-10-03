@@ -2,23 +2,20 @@ import React from 'react'
 
 const InputField = ({
   name,
-  icon,
   placeholder,
   type,
   invalid,
+  value,
 }) => {
   return (
-    <div className='input-icons'>
+    <div className='input-field'>
       <input 
-        className={invalid && 'invalid'} 
-        type={type} 
-        name={name} 
+        className= {invalid && 'invalid'}
+        name={name}
         placeholder={placeholder}
-        autoComplete={type == 'password' ? 'on' : 'off'}
+        type={type}
+        defaultValue={value ? value : ''}
       />
-      <div className='icon'>
-        {icon}
-      </div>
     </div>
   )
 }

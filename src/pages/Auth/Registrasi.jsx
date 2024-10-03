@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import InputField from '../../components/InputField'
+import InputIcon from '../../components/InputIcon'
 import { MdOutlineEmail } from "react-icons/md";
 import Button from '../../components/Button';
 import { FiLock } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
-import axiosClient from '../../api/axios-client';
+import axiosAuth from '../../api/axios-user';
 import { Alert, CircularProgress } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 
@@ -33,7 +33,7 @@ const Registrasi = () => {
       password : password.value
     }
 
-    axiosClient.post('/register', payload)
+    axiosAuth.post('/register', payload)
       .then(({data}) => {
         setUser(data)
         navigate('/dashboard')
@@ -63,7 +63,7 @@ const Registrasi = () => {
       }
 
       <form onSubmit={handleRegistrasi} className='form-auth'>
-        <InputField
+        <InputIcon
           name='name'
           type='text'
           placeholder='Full Name'
@@ -71,7 +71,7 @@ const Registrasi = () => {
           invalid={isValidate}
         />
 
-        <InputField
+        <InputIcon
           name='email'
           type='email'
           placeholder='Email Address'
@@ -79,7 +79,7 @@ const Registrasi = () => {
           invalid={isValidate}
         />
 
-        <InputField
+        <InputIcon
           name='password'
           type='password'
           placeholder='Password'

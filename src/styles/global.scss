@@ -47,7 +47,7 @@ $radius: 30px;
     }
 }
 
-// Input Field
+// Input Icons
 .input-icons{
     width: 100%;
     position: relative;
@@ -90,6 +90,40 @@ $radius: 30px;
             color: $danger;
         }
     }
+}
+
+// Input Field
+.input-field{
+
+    input{
+        width: 100%;
+        box-sizing: border-box;
+        background: transparent;
+        padding: 10px 20px;
+        border: 1px solid #EEEEEE;
+        border-radius: $radius;
+        -webkit-border-radius: $radius;
+        -moz-border-radius: $radius;
+        -ms-border-radius: $radius;
+        -o-border-radius: $radius;
+
+        &:active, 
+        &:focus{
+            outline: 1px solid $primary;
+            background: transparent!important;
+        }
+
+        &.invalid{
+            outline: 1px solid $danger;
+        }
+    }
+}
+
+// Form wapper
+.form-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 // Not Found
@@ -265,7 +299,8 @@ $radius: 30px;
 
     .content{
         margin-top: 30px;
-        border: 1px solid #0000001F;
+        border: 1px solid #00000012;
+        background-color: white;
     }
 }
 

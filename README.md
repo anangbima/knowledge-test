@@ -30,8 +30,7 @@ Sebelum menjalankan aplikasi ini, pastikan di devisce sudah terinstall Node JS
    ```sh
    npm run dev
    ```
-4. Run local server
-   jalankan perintah berikut di terminal yang berbeda, dari sebelumnya
+4. Run local server, jalankan perintah berikut di terminal yang berbeda, dari sebelumnya
    ```sh
    Json-server –watch db.json
    ```

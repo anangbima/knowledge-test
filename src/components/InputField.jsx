@@ -10,7 +10,7 @@ const InputField = ({
   return (
     <div className='input-field'>
       <input 
-        className= {invalid && 'invalid'}
+        className= {invalid ? 'invalid' : ''}
         name={name}
         placeholder={placeholder}
         type={type}

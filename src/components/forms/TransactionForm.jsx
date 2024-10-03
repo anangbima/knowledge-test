@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import InputField from '../InputField'
+import SelectField from '../SelectField'
 
 const TransactionForm = ({
   isValidate,
@@ -14,7 +15,7 @@ const TransactionForm = ({
         type='text'
         placeholder='Item'
         invalid={isValidate}
-        value={value.item}
+        value={value ? value.item : ''}
       />
 
       <InputField
@@ -22,7 +23,7 @@ const TransactionForm = ({
         type='number'
         placeholder='Price'
         invalid={isValidate}
-        value={value.price}
+        value={value ? value.price : ''}
       />
 
       <InputField
@@ -30,15 +31,14 @@ const TransactionForm = ({
         type='date'
         placeholder='Date'
         invalid={isValidate}
-        value={value.date}
+        value={value ? value.date : ''}
       />
 
-      <InputField
+      <SelectField
         name='status'
-        type='text'
-        placeholder='Status'
         invalid={isValidate}
-        value={value.status}
+        value={value ? value.status : ''}
+        option={['Waiting', 'Done', 'Cancel']}
       />
     </div>
   )

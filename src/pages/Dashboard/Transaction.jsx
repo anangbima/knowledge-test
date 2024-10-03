@@ -6,6 +6,8 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axiosUser from '../../api/axios-user';
 import { MdOutlineEdit } from "react-icons/md";
 import { MdOutlineDelete } from "react-icons/md";
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
 
 const Transaction = () => {
   const [isValidate, setIsValidate] = useState(false);
@@ -45,7 +47,6 @@ const Transaction = () => {
   const getTransaction = () => {
     axiosUser.get('transaction')
       .then(({data}) => {
-        console.log('get transaction', data)
         setTransaction(data)
       })
       .catch((error) => {
@@ -77,6 +78,7 @@ const Transaction = () => {
       field: "id",
       headerName: "ID",
       width: 70,
+      flex: 1
     },
     {
       field: "item",
@@ -87,6 +89,11 @@ const Transaction = () => {
       field: "price",
       headerName: "Price",
       width: 220,
+      renderCell: (params) => (
+        <div>
+          $ {params.row.price}
+        </div>
+      )
     },
     {
       field: "date",
@@ -97,6 +104,27 @@ const Transaction = () => {
       field: "status",
       headerName: "Status",
       width: 150,
+      renderCell: (params) => (
+        <>
+          {params.row.status == 'Cancel' &&
+            <span className='btn-status danger'>
+              {params.row.status}
+            </span>
+          }
+
+          {params.row.status == 'Waiting' &&
+            <span className='btn-status warning'>
+              {params.row.status}
+            </span>
+          }
+
+          {params.row.status == 'Done' &&
+            <span className='btn-status success'>
+              {params.row.status}
+            </span>
+          }
+        </>
+      )
     },
     {
       field: "actions",
@@ -128,6 +156,16 @@ const Transaction = () => {
     }
   ]
 
+  // Alert
+  const showSwal = (_title) => {
+    withReactContent(Swal).fire({
+      icon: "success",
+      title: _title,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   return (
     <div>
       <Header page='Transaction'/>
@@ -143,8 +181,30 @@ const Transaction = () => {
         open={addDialog}
         onClose={handleAddDialog}
         PaperProps={{ 
-          sx: { borderRadius: "15px" } 
+          sx: { borderRadius: "15px" },
+          component: 'form',
+          onSubmit: (e) => {
+            e.preventDefault();
 
+            // Get Value
+            const formData = new FormData(e.currentTarget);
+            const formJson = Object.fromEntries(formData.entries())
+
+            const payload = {
+              item: formJson.item,
+              price: formJson.price,
+              date: formJson.date,
+              status: formJson.status,
+            }
+
+            // proses menambadata
+            axiosUser.post('transaction', payload)
+              .then(({data}) => {
+                handleAddDialog()
+                getTransaction()
+                showSwal('Success Add Transaction')
+              })
+          }
         }}
       >
         <DialogContent>
@@ -171,7 +231,30 @@ const Transaction = () => {
         open={editDialog}
         onClose={handleEditDialog}
         PaperProps={{ 
-          sx: { borderRadius: "15px" } 
+          sx: { borderRadius: "15px" },
+          component: 'form',
+          onSubmit: (e) => {
+            e.preventDefault();
+
+            // Get Value
+            const formData = new FormData(e.currentTarget);
+            const formJson = Object.fromEntries(formData.entries())
+
+            const payload = {
+              item: formJson.item,
+              price: formJson.price,
+              date: formJson.date,
+              status: formJson.status,
+            }
+
+            // proses mengubah data
+            axiosUser.put('transaction/'+detailTransaction.id, payload)
+              .then(({data}) => {
+                handleEditDialog()
+                getTransaction()
+                showSwal('Success Update Transaction')
+              })
+          } 
         }}
       >
         <DialogContent>
@@ -199,7 +282,19 @@ const Transaction = () => {
         open={deleteDialog}
         onClose={handleDeleteDialog}
         PaperProps={{ 
-          sx: { borderRadius: "15px" } 
+          sx: { borderRadius: "15px" },
+          component: 'form',
+          onSubmit: (e) => {
+            e.preventDefault();
+
+            // proses menghapus data
+            axiosUser.delete('transaction/'+detailTransaction.id)
+              .then(({data}) => {
+                handleDeleteDialog()
+                getTransaction()
+                showSwal('Success Delete Transaction')
+              })
+          } 
         }}
       >
         <DialogContent>
@@ -219,14 +314,14 @@ const Transaction = () => {
         </DialogActions>
       </Dialog>
 
-      <div className='content'>
+      <div className={'content'}>
         <DataGrid
           rows={transaction}
           columns={columns}
           initialState={{
             pagination: {
               paginationModel: {
-                pageSize: 5,
+                pageSize: 10,
               },
             },
           }}

@@ -1,7 +1,9 @@
 $primary: #0575E6;
 $accent-primary : #0266c9;
 $light:#F2F2F2;
-$danger: #D74141;
+$danger: #d9534f;
+$warning: #f0ad4e; 
+$success: #5cb85c;
 
 $radius: 30px;
 
@@ -34,6 +36,30 @@ $radius: 30px;
     
     &:hover{
         background: $accent-primary;
+    }
+}
+
+// Button Status
+.btn-status{
+    color: white;
+    padding: 2px 15px;
+    font-size: 12px;
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    
+    &.danger{
+        background-color: $danger;
+    }
+
+    &.warning{
+        background-color: $warning;
+    }
+
+    &.success{
+        background-color: $success;
     }
 }
 
@@ -94,8 +120,8 @@ $radius: 30px;
 
 // Input Field
 .input-field{
-
-    input{
+    input, 
+    select{
         width: 100%;
         box-sizing: border-box;
         background: transparent;
@@ -302,5 +328,15 @@ $radius: 30px;
         border: 1px solid #00000012;
         background-color: white;
     }
+}
+
+@media only screen and (min-width:1500px){
+
+}
+
+
+// Make Ui Responsive
+@media only screen and (max-width:992px){
+    
 }
 

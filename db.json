@@ -1,46 +1,46 @@
 {
-    "transaction" : [
-        {
-            "id" : 1,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        },
-        {
-            "id" : 2,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        },
-        {
-            "id" : 3,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        },
-        {
-            "id" : 4,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        },
-        {
-            "id" : 5,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        },
-        {
-            "id" : 6,
-            "item" : "lorem ipsum dolor",
-            "price" : 89.54,
-            "date" : "31/12/2022",
-            "status" : "lorem"
-        }
-    ]
+  "transaction": [
+    {
+      "id": "1",
+      "item": "lorem ipsum dolor",
+      "price": 89.54,
+      "date": "2022-12-30",
+      "status": "Done"
+    },
+    {
+      "id": "2",
+      "item": "lorem ipsum dolor",
+      "price": 89.54,
+      "date": "2022-12-30",
+      "status": "Done"
+    },
+    {
+      "id": "3",
+      "item": "lorem ipsum dolor",
+      "price": 89.54,
+      "date": "2022-12-30",
+      "status": "Waiting"
+    },
+    {
+      "id": "4",
+      "item": "lorem ipsum dolor",
+      "price": 89.54,
+      "date": "2022-12-30",
+      "status": "Waiting"
+    },
+    {
+      "item": "lorem ipsum dolor",
+      "price": "89.54",
+      "date": "2022-12-27",
+      "status": "Cancel",
+      "id": "5"
+    },
+    {
+      "id": "e7ca",
+      "item": "sdfsdf",
+      "price": "123",
+      "date": "2024-10-17",
+      "status": "Waiting"
+    }
+  ]
 }

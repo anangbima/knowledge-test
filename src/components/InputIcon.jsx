@@ -10,7 +10,7 @@ const InputIcon = ({
   return (
     <div className='input-icons'>
       <input 
-        className={invalid && 'invalid'} 
+        className={invalid ? 'invalid' : ''} 
         type={type} 
         name={name} 
         placeholder={placeholder}

@@ -78,7 +78,6 @@ const Transaction = () => {
       field: "id",
       headerName: "ID",
       width: 70,
-      flex: 1
     },
     {
       field: "item",

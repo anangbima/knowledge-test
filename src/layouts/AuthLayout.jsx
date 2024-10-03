@@ -23,8 +23,7 @@ const AuthLayout = () => {
           </div>
           
           <Button 
-            type='link' 
-            to='/registrasi' 
+            type='link'  
             text='Read Me'
           />
         </div>

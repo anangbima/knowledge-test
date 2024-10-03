@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import InputField from '../../components/InputField'
@@ -14,6 +14,10 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Login - GoFinance'
+  }, [])
 
   const handleLogin = async (e) => {
     e.preventDefault();

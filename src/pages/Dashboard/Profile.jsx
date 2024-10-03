@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Header from '../../components/Header'
 
 const Profile = () => {
+
+  useEffect(() => {
+    document.title = 'Profile - GoFinance'
+  }, [])
+
   return (
-    <div>Profile</div>
+    <div>
+      <Header page='Profile'/>
+    </div>
   )
 }
 

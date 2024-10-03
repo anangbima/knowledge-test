@@ -26,6 +26,11 @@ const UserLayout = () => {
     navigate('/')
   };
 
+  const handleProfile = () => {
+    setAnchorEl(null);
+    navigate('/profile')
+  }
+
   if(!user) {
     return <Navigate to='/login'/>
   }
@@ -59,7 +64,7 @@ const UserLayout = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleProfile}>Profile</MenuItem>
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>
         </div>

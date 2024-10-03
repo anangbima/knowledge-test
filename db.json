@@ -1,0 +1,39 @@
+{
+    "transaction" : [
+        {
+            "id" : 1,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
+        },
+        {
+            "id" : 2,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
+        },
+        {
+            "id" : 3,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
+        },
+        {
+            "id" : 4,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
+        },
+        {
+            "id" : 5,
+            "item" : "lorem ipsum dolor",
+            "price" : 89.54,
+            "date" : "31/12/2022",
+            "status" : "lorem"
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import { Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 import { FaPlus } from "react-icons/fa";
@@ -8,6 +8,10 @@ const Transaction = () => {
   const [addDialog, setAddDialog] = useState(false); // Manage modal tambah
 	const [editDialog, setEditDialog] = useState(false); //Manage modal edit
 	const [deleteDialog, setDeleteDialog] = useState(false); // Manage modal hapus
+
+  useEffect(() => {
+    document.title = 'Transaction - GoFinance'
+  }, [])
 
   // handle add dialog
   const handleAddDialog = () => {
